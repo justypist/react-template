@@ -4,9 +4,12 @@ export interface UseLoggerOptions {
 }
 
 export const useLogger = (options: UseLoggerOptions = {}) => {
-  const { name, logOnRender = true } = options;
+  const {
+    name = new Error().stack?.split('at')[2].split(' ')[1] ?? 'Unknown',
+    logOnRender = true,
+  } = options;
 
   if (logOnRender) {
-    console.log(`[${name}]: rendered`);
+    console.log(`[${name || useLogger.caller.name}]: rendered`);
   }
 };
