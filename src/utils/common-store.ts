@@ -1,25 +1,28 @@
 import { debounce } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 
-type CommonStoreHash<K> = (key: K) => string;
-type CommonStoreObserver<R> = (response: R | undefined) => void;
+type CommonStoreHash<Request> = (key: Request) => string;
+type CommonStoreObserver<Response> = (response: Response | undefined) => void;
 
-interface CommonStoreOptions<K, R> {
-  hash?: CommonStoreHash<K>;
-  fetchData: (keys: K[]) => Promise<R[]>;
-  initialValue?: R;
+interface CommonStoreOptions<Request, Response> {
+  hash?: CommonStoreHash<Request>;
+  fetchData: (keys: Request[]) => Promise<Response[]>;
+  initialValue?: Response;
   debounceTime?: number;
 }
 
-export class CommonStore<K, R> {
-  private _hashKeyMap = new Map<string, K>();
-  private _hashSubjectMap = new Map<string, BehaviorSubject<R | undefined>>();
+export class CommonStore<Request, Response> {
+  private _hashKeyMap = new Map<string, Request>();
+  private _hashSubjectMap = new Map<
+    string,
+    BehaviorSubject<Response | undefined>
+  >();
 
   private _hashSet: Set<string> = new Set<string>();
 
-  private _hash: CommonStoreHash<K> = (key: K) => String(key);
-  private _fetchData: (keys: K[]) => Promise<R[]>;
-  private _initialValue?: R;
+  private _hash: CommonStoreHash<Request> = (key: Request) => String(key);
+  private _fetchData: (keys: Request[]) => Promise<Response[]>;
+  private _initialValue?: Response;
   private _debounceTime = 100;
 
   constructor({
@@ -27,17 +30,21 @@ export class CommonStore<K, R> {
     fetchData,
     initialValue,
     debounceTime,
-  }: CommonStoreOptions<K, R>) {
+  }: CommonStoreOptions<Request, Response>) {
     this._hash = hash ?? this._hash;
     this._fetchData = fetchData;
     this._initialValue = initialValue ?? this._initialValue;
     this._debounceTime = debounceTime ?? this._debounceTime;
   }
 
+  // 真实请求
   private fetchData = debounce(async () => {
+    // 获取队列中所有请求key
     const keys = [...this._hashSet.values()]
       .map((hash) => this._hashKeyMap.get(hash))
-      .filter<K>((key): key is K => key !== null && key !== undefined);
+      .filter<Request>(
+        (key): key is Request => key !== null && key !== undefined,
+      );
 
     this._hashSet.clear();
 
@@ -58,7 +65,11 @@ export class CommonStore<K, R> {
   }, this._debounceTime);
 
   // 订阅
-  public subscribe(key: K, observer: CommonStoreObserver<R>, initialValue?: R) {
+  public subscribe(
+    key: Request,
+    observer: CommonStoreObserver<Response>,
+    initialValue?: Response,
+  ) {
     // 通过请求参数得到hash
     const hash = this._hash(key);
     // 通过key查找主题
@@ -72,7 +83,7 @@ export class CommonStore<K, R> {
       this._hashSet.add(hash);
 
       // 生成新的主题， 添加初始值
-      subject = new BehaviorSubject<R | undefined>(
+      subject = new BehaviorSubject<Response | undefined>(
         initialValue ?? this._initialValue,
       );
       // 保存hash和主题的映射关系
