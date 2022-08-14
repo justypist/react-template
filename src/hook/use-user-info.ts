@@ -16,9 +16,13 @@ export const useUserInfo = (name: string, passwd: string) => {
   const [info, setInfo] = useState<string>();
 
   useEffect(() => {
-    return store.subscribe({ name, passwd }, (info) => {
-      setInfo(info);
-    }).unsubscribe;
+    return store.subscribe(
+      { name, passwd },
+      (info) => {
+        setInfo(info);
+      },
+      'no message',
+    ).unsubscribe;
   }, [name, passwd]);
 
   return info;

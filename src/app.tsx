@@ -1,18 +1,17 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
+import { useConstValue } from './hook/use-const-value';
 import { useLogger } from './hook/use-logger';
-import { useUserInfo } from './hook/use-user-info';
 
 export const App: FC = () => {
   useLogger();
-  const user1 = useUserInfo('simplessor', 'test');
-  const user2 = useUserInfo('xy', 'test');
-  const user3 = useUserInfo('sqwe', 'test');
+  const value = useConstValue();
+
+  const [count, setCount] = useState<number>(0);
 
   return (
     <>
-      <p>{user1}</p>
-      <p>{user2}</p>
-      <p>{user3}</p>
+      {JSON.stringify(value)}{' '}
+      <button onClick={() => setCount((p) => p + 1)}>{count}</button>
     </>
   );
 };
