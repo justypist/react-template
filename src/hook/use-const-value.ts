@@ -10,6 +10,7 @@ type Res = {
 const store = new CommonStore<NoopRequest, Res>({
   fetchData: async (requests) =>
     new Promise((resolve) => {
+      console.log('trigger');
       setTimeout(
         () =>
           resolve(
