@@ -13,6 +13,10 @@ const WebpackConfig = {
   module: {
     rules: [
       {
+        test: /\.jpg/,
+        type: 'asset',
+      },
+      {
         test: /\.less$/i,
         use: [
           'style-loader',
