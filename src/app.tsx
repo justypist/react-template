@@ -1,29 +1,25 @@
-import './app.less';
-
-import { FC, ReactNode, useEffect, useState } from 'react';
+/* eslint-disable indent */
+import { FC, useState } from 'react';
 import { useLogger } from './hook/use-logger';
+import { Page1 } from './pages/page1';
+import { Page2 } from './pages/page2';
 
-import cloud from './asset/cloud.jpg';
-
-const pages: ReactNode[] = [
-  <img key="cloud" className="cloud" src={cloud} title="cloud" />,
-  <div key="main" className="main">
-    <button onClick={console.log}>click</button>
-  </div>,
-];
+enum Page {
+  First,
+  Second,
+}
 
 export const App: FC = () => {
   useLogger();
 
-  const [pageIndex, setPageIndex] = useState<number>(0);
+  const [pageIndex, setPageIndex] = useState<Page>(Page.First);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setPageIndex(1), 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const page = pages[pageIndex];
-
-  return <div className="app">{page}</div>;
+  switch (pageIndex) {
+    case Page.First:
+      return <Page1 onAnimationEnd={() => setPageIndex(Page.Second)} />;
+    case Page.Second:
+      return <Page2 />;
+    default:
+      return null;
+  }
 };
