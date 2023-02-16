@@ -1,0 +1,16 @@
+.app {
+  width: 100vw;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .item {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    offset-path: path('m 0 0 l 300 300 l -600 400 l 600 400 l -600 400');
+    animation: 5s ease-in-out;
+  }
+}
