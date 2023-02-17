@@ -1,13 +1,9 @@
 import { useMemo } from 'react';
 
-export interface UseLoggerOptions {
-  name?: string;
-}
-
-export const useLogger = (options: UseLoggerOptions) => {
+export const useLogger = (name?: string) => {
   const stackName = useMemo(
     () => new Error().stack?.split('at')[2].split(' ')[1] ?? 'Unknown',
     [],
   );
-  console.log(`[${options.name ?? stackName}]: rendered`);
+  console.log(`[${name ?? stackName}]: rendered`);
 };
