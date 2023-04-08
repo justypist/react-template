@@ -1,6 +1,17 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = require('path');
 
+const srcAlias = [
+  'app',
+  'hook',
+  'component',
+  'util',
+  'page',
+].reduce((alias, subFolder) => {
+  alias[`@${subFolder}`] = resolve(__dirname, 'src', subFolder);
+  return alias;
+}, {});
+
 const WebpackConfig = {
   entry: {
     index: resolve('src', 'index.tsx'),
@@ -51,7 +62,7 @@ const WebpackConfig = {
   ],
   resolve: {
     extensions: ['.json', '.js', '.ts', '.tsx'],
-    alias: {},
+    alias: srcAlias,
   },
 };
 
