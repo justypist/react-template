@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: default
+name: [Auto] main
 
 steps:
 - name: build
@@ -17,4 +17,4 @@ steps:
 
 trigger:
   branch:
-  - master
+  - main
