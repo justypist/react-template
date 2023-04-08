@@ -3,7 +3,7 @@ type: docker
 name: default
 
 steps:
-- name: hello
+- name: build
   image: node:lts
   commands:
   - npm config --location=global set registry https://registry.npmmirror.com/
@@ -11,6 +11,9 @@ steps:
   - pnpm install
   - pnpm build
   - du -h ./dist/*
+  - du -h ./dist
+  - mv dist react-template
+  - tar -cvzf react-template.tar.gz react-template
 
 trigger:
   branch:
