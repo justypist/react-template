@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: [Auto] main
+name: Auto Build - main
 
 steps:
 - name: build
