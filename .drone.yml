@@ -1,0 +1,17 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: hello
+  image: node:lts
+  commands:
+  - npm config --location=global set registry https://registry.npmmirror.com/
+  - npm install --location=global pnpm
+  - pnpm install
+  - pnpm build
+  - du -h ./dist/*
+
+trigger:
+  branch:
+  - master
