@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://192.168.1.16:13000/yongx/react-template.git"
+    "url": "https://gogs.justypist.cc/justypist/react-template.git"
   },
   "keywords": [
     "react",
     "template"
   ],
-  "author": "simplessor",
+  "author": "justypist",
   "license": "GPL3.0",
   "devDependencies": {
     "@commitlint/cli": "17.5.1",
