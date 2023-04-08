@@ -7,7 +7,7 @@ steps:
   image: node:lts
   commands:
   - npm config --location=global set registry https://registry.npmmirror.com/
-  - npm install --location=global pnpm
+  - npm install --location=global pnpm@8.1.1
   - pnpm install
   - pnpm build
   - du -h ./dist/*
