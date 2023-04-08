@@ -8,12 +8,18 @@ module.exports = merge(common, {
   devtool: 'eval-source-map',
   devServer: {
     compress: true,
-    port: 10000,
+    port: 3000,
     allowedHosts: ['localhost'],
     historyApiFallback: true,
     hot: true,
     https: false,
     open: false,
+    client: {
+      logging: 'warn',
+      overlay: true,
+      progress: true,
+      reconnect: true,
+    },
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
