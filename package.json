@@ -2,21 +2,28 @@
   "name": "react-template",
   "version": "1.0.0",
   "description": "React模板",
+  "private": true,
+  "author": {
+    "name": "justypist",
+    "email": "1003659191@qq.com",
+    "url": "https://github.com/justypist"
+  },
+  "license": "GPL3.0",
+  "keywords": ["react", "template"],
+  "repository": {
+    "type": "git",
+    "url": "https://gogs.justypist.cc/justypist/react-template.git"
+  },
+  "engines": {
+    "node": "18.15.0",
+    "pnpm": "7.30.3"
+  },
+  "os": ["linux"],
   "scripts": {
     "prepare": "husky install",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack.dev.js",
     "build": "NODE_ENV=production webpack --config webpack.prod.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gogs.justypist.cc/justypist/react-template.git"
-  },
-  "keywords": [
-    "react",
-    "template"
-  ],
-  "author": "justypist",
-  "license": "GPL3.0",
   "devDependencies": {
     "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.4",
