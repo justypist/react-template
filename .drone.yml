@@ -18,6 +18,7 @@ steps:
   - du -h ./dist
   - mv dist react-template
   - tar -cvzf react-template.tar.gz react-template
+  - du -h react-template.tar.gz
 
 volumes:
 - name: cache
