@@ -24,7 +24,7 @@ const WebpackConfig = {
   module: {
     rules: [
       {
-        test: /\.less$/i,
+        test: /\.(less|css)$/i,
         use: [
           'style-loader',
           {
