@@ -1,6 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { resolve } = require('path');
 
+// 是否为开发环境
+const isDEV = process.env.NODE_ENV === 'development';
+
+// 路径别名
 const srcAlias = [
   'app',
   'hook',
@@ -26,13 +31,8 @@ const WebpackConfig = {
       {
         test: /\.(less|css)$/i,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-            },
-          },
+          isDEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
           'less-loader',
         ],
       },
@@ -61,6 +61,9 @@ const WebpackConfig = {
       cache: true,
       inject: true,
       minify: 'auto',
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
     }),
   ],
   resolve: {
