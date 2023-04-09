@@ -2,6 +2,7 @@ import 'normalize.css';
 import './index.less';
 import { createRoot } from 'react-dom/client';
 import { App } from '@app';
+import { StrictMode } from 'react';
 
 const entrypoint = document.getElementById('entrypoint');
 
@@ -15,5 +16,9 @@ const entrypoint = document.getElementById('entrypoint');
   }
 
   const root = createRoot(entrypoint);
-  root.render(<App />);
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
 })();
