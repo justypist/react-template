@@ -1,8 +1,9 @@
 import 'normalize.css';
 import './index.less';
 import { createRoot } from 'react-dom/client';
-import { App } from '@app';
 import { StrictMode } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@router';
 
 const entrypoint = document.getElementById('entrypoint');
 
@@ -18,7 +19,7 @@ const entrypoint = document.getElementById('entrypoint');
   const root = createRoot(entrypoint);
   root.render(
     <StrictMode>
-      <App />
+      <RouterProvider router={router} />
     </StrictMode>,
   );
 })();

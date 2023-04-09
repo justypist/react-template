@@ -8,6 +8,7 @@ const isDEV = process.env.NODE_ENV === 'development';
 // 路径别名
 const srcAlias = [
   'app',
+  'router',
   'hook',
   'component',
   'util',
