@@ -9,7 +9,7 @@ module.exports = merge(common, {
   devServer: {
     compress: true,
     port: 3000,
-    allowedHosts: ['localhost'],
+    allowedHosts: ['dev.justypist.cc', 'localhost'],
     historyApiFallback: true,
     hot: true,
     https: false,
