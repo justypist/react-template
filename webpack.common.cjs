@@ -27,12 +27,17 @@ const WebpackConfig = {
   output: {
     filename: 'index.[contenthash].js',
     path: resolve('dist'),
+    assetModuleFilename: 'asset/[hash][ext][query]',
     clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.(less|css)$/i,
+        test: /\.(png|jpg|jpeg|gif|webp|svg)$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(less|css)$/,
         use: [
           isDEV ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
