@@ -13,6 +13,8 @@ const srcAlias = [
   'component',
   'util',
   'page',
+  'service',
+  'asset',
 ].reduce((alias, subFolder) => {
   alias[`@${subFolder}`] = resolve(__dirname, 'src', subFolder);
   return alias;
