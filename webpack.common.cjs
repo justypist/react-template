@@ -76,6 +76,7 @@ const WebpackConfig = {
     new CopyPlugin({
       patterns: [
         { from: resolve('public', 'robots.txt'), to: resolve('dist', 'robots.txt') },
+        { from: resolve('public', 'manifest.webmanifest'), to: resolve('dist', 'manifest.webmanifest') },
       ],
     }),
     new WorkboxPlugin.GenerateSW({

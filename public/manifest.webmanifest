@@ -1,0 +1,22 @@
+{
+  "short_name": "ReactTemplate",
+  "name": "React Template",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "id": "/",
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#FFFFFF",
+  "shortcuts": [
+  ],
+  "description": "React Template Description",
+  "screenshots": [
+  ]
+}
