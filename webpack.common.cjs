@@ -77,6 +77,7 @@ const WebpackConfig = {
       patterns: [
         { from: resolve('public', 'robots.txt'), to: resolve('dist', 'robots.txt') },
         { from: resolve('public', 'manifest.webmanifest'), to: resolve('dist', 'manifest.webmanifest') },
+        { from: resolve('public', 'icon'), to: resolve('dist', 'icon') },
       ],
     }),
     new WorkboxPlugin.GenerateSW({
