@@ -83,6 +83,7 @@ const WebpackConfig = {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+      maximumFileSizeToCacheInBytes: 1024 * 1024 * 10,
     }),
   ],
   resolve: {
