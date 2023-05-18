@@ -1,7 +1,9 @@
+const { resolve } = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { resolve } = require('path');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // 是否为开发环境
 const isDEV = process.env.NODE_ENV === 'development';
@@ -75,6 +77,10 @@ const WebpackConfig = {
       patterns: [
         { from: resolve('public', 'robots.txt'), to: resolve('dist', 'robots.txt') },
       ],
+    }),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
     }),
   ],
   resolve: {

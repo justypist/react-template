@@ -5,6 +5,19 @@ import { StrictMode } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from '@router';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
+}
+
 const entrypoint = document.getElementById('entrypoint');
 
 (() => {
