@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { resolve } = require('path');
 
@@ -72,6 +73,11 @@ const WebpackConfig = {
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: resolve('public', 'robots.txt'), to: resolve('dist', 'robots.txt') },
+      ],
     }),
   ],
   resolve: {
