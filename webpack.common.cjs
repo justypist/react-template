@@ -3,7 +3,6 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // 是否为开发环境
 const isDEV = process.env.NODE_ENV === 'development';
@@ -78,11 +77,6 @@ const WebpackConfig = {
         { from: resolve('public', 'manifest.webmanifest'), to: resolve('dist', 'manifest.webmanifest') },
         { from: resolve('public', 'icon'), to: resolve('dist', 'icon') },
       ],
-    }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 1024 * 1024 * 10,
     }),
   ],
   resolve: {
