@@ -10,7 +10,7 @@ steps:
         path: /drone/.pnpm-store
     commands:
       - npm config --location=global set registry https://registry.npmmirror.com/
-      - npm install --location=global pnpm@8.1.1
+      - npm install --location=global pnpm@8.6.0
       - pnpm config set store-dir /drone/.pnpm-store
       - pnpm install
       - pnpm build
