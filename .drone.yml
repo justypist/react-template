@@ -4,7 +4,7 @@ name: Auto Build - main
 
 steps:
   - name: build
-    image: node:lts
+    image: node:18.16.1
     volumes:
       - name: cache
         path: /drone/.pnpm-store
