@@ -5,13 +5,13 @@ name: Auto Build - main
 steps:
   - name: build
     image: node:18.16.1
-    volumes:
-      - name: cache
-        path: /drone/.pnpm-store
+    # volumes:
+    #   - name: cache
+    #     path: /drone/.pnpm-store
     commands:
       - npm config --location=global set registry https://registry.npmmirror.com/
       - npm install --location=global pnpm@8.6.0
-      - pnpm config set store-dir /drone/.pnpm-store
+      # - pnpm config set store-dir /drone/.pnpm-store
       - pnpm install
       - pnpm build
       - du -h ./dist/*
@@ -20,10 +20,10 @@ steps:
       - tar -cvzf react-template.tar.gz react-template
       - du -h react-template.tar.gz
 
-volumes:
-  - name: cache
-    host:
-      path: /tmp/pnpm_cache
+# volumes:
+#   - name: cache
+#     host:
+#       path: /tmp/pnpm_cache
 
 trigger:
   branch:
