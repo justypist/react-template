@@ -62,7 +62,7 @@ const WebpackConfig = {
     new HtmlWebpackPlugin({
       template: resolve('public', 'index.html'),
       filename: resolve('dist', '[name].html'),
-      favicon: resolve('public', 'favicon.ico'),
+      // favicon: resolve('public', 'icon', 'favicon.ico'),
       hash: true,
       cache: true,
       inject: true,
