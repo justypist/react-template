@@ -1,3 +1,1 @@
-# react-template
-
-React模板
+# `__PROJECT_NAME__`
