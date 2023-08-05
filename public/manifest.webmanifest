@@ -1,6 +1,6 @@
 {
-  "short_name": "ReactTemplate",
-  "name": "React Template",
+  "short_name": "__PROJECT_NAME__",
+  "name": "__PROJECT_NAME__",
   "icons": [
     {
       "src": "/icon/android-chrome-192x192.png",
@@ -23,7 +23,7 @@
   "theme_color": "#FFFFFF",
   "shortcuts": [
   ],
-  "description": "React Template Description",
+  "description": "__PROJECT_NAME__ Description",
   "screenshots": [
   ]
 }

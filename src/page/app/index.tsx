@@ -8,7 +8,7 @@ export const App: FC = () => {
 
   return (
     <div className="app">
-      <span>React Template</span>
+      <span>__PROJECT_NAME__</span>
     </div>
   );
 };
