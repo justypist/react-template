@@ -19,8 +19,8 @@
     "url": "https://gogs.justypist.cc/justypist/react-template.git"
   },
   "engines": {
-    "node": "18.16.1",
-    "pnpm": "8.6.0"
+    "node": ">18.16.1",
+    "pnpm": ">8.6.0"
   },
   "os": [
     "linux"
