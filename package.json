@@ -34,6 +34,7 @@
     "@commitlint/cli": "17.5.1",
     "@commitlint/config-conventional": "17.4.4",
     "@commitlint/types": "17.4.4",
+    "@tsconfig/node18": "18.2.2",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
@@ -65,10 +66,7 @@
     "workbox-webpack-plugin": "6.5.4"
   },
   "dependencies": {
-    "normalize.css": "8.0.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-router-dom": "6.10.0",
-    "rxjs": "7.8.0"
+    "react-dom": "18.2.0"
   }
 }
