@@ -17,6 +17,11 @@ const srcAlias = [
   'page',
   'service',
   'asset',
+  'dto',
+  'entity',
+  'context',
+  'store',
+  'app',
 ].reduce((alias, subFolder) => {
   alias[`@${subFolder}`] = resolve(__dirname, 'src', subFolder);
   return alias;
@@ -39,7 +44,14 @@ const WebpackConfig = {
         type: 'asset/resource',
       },
       {
-        test: /\.(less|css)$/,
+        test: /\.css$/,
+        use: [
+          isDEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.less$/,
         use: [
           isDEV ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
@@ -63,11 +75,13 @@ const WebpackConfig = {
     new HtmlWebpackPlugin({
       template: resolve('public', 'index.html'),
       filename: resolve('dist', '[name].html'),
-      // favicon: resolve('public', 'icon', 'favicon.ico'),
-      hash: true,
       cache: true,
-      inject: true,
       minify: 'auto',
+      base: '/',
+      externals: isDEV ? [] : [
+        'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
+      ]
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
