@@ -1,27 +1,22 @@
-import 'normalize.css';
 import './index.less';
+
+import { App } from '@app';
 import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { router } from '@router';
 
-import './service-worker';
-
-const entrypoint = document.getElementById('entrypoint');
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    await navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(() => console.log('service worker registered.'))
+      .catch((registrationError) => {
+        console.warn('service worker registration failed: ', registrationError);
+      });
+  });
+}
 
 (() => {
-  if (!entrypoint) {
-    const tip = document.createElement('strong');
-    tip.textContent = 'entrypoint not found';
-    tip.style.color = 'red';
-    document.body.appendChild(tip);
-    return;
-  }
-
+  const entrypoint = document.createElement('div');
+  document.body.appendChild(entrypoint);
   const root = createRoot(entrypoint);
-  root.render(
-    <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>,
-  );
+  root.render(<App />);
 })();
