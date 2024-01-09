@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { DefinePlugin } = require('webpack');
 
 // 是否为开发环境
 const isDEV = process.env.NODE_ENV === 'development';
@@ -78,11 +79,19 @@ const WebpackConfig = {
         { from: resolve('public', 'icon'), to: resolve('dist', 'icon') },
       ],
     }),
+    new DefinePlugin({
+      __REACT_DEVTOOLS_GLOBAL_HOOK__: '({ isDisabled: true })',
+      'process.env': JSON.stringify(process.env),
+    }),
   ],
   resolve: {
     extensions: ['.json', '.js', '.ts', '.tsx'],
     alias: srcAlias,
   },
+  externals: isDEV ? {} : {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+  }
 };
 
 module.exports = WebpackConfig;

@@ -23,6 +23,12 @@
     <title>__PROJECT_NAME__</title>
   </head>
   <body>
-    <div id="entrypoint"></div>
+    <% for (var i in htmlWebpackPlugin.options.externals) { %>
+    <script
+      type="text/javascript"
+      crossorigin
+      src="<%= htmlWebpackPlugin.options.externals[i] %>"
+    ></script>
+    <% } %>
   </body>
 </html>
